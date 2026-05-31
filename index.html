@@ -297,7 +297,7 @@ body::after {
 </audio>
 
 <!-- Shows only if browser blocks autoplay -->
-<button id="music-btn" onclick="retryMusic()">🎵 Tap to play music</button>
+<button id="music-btn" onclick="document.getElementById('bg-music').play();this.style.display='none';">Tap to play music</button>
 
 <canvas id="particle-canvas"></canvas>
 <div id="progress-bar"></div>
