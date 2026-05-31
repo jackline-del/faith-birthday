@@ -292,30 +292,12 @@ body::after {
 ║  3. Put it in the SAME FOLDER as this HTML file      ║
 ╚══════════════════════════════════════════════════════╝
 -->
-<audio id="bg-music" loop>
-    <source src="https://soundhelix.co" type="audio/mpeg">
-</audio>
-
-<button id="music-btn" onclick="playMusicAndStart()">🎵 Tap to play music</button>
-
-<script>
-function playMusicAndStart() {
-    var audio = document.getElementById('bg-music');
-    if (audio) {
-        audio.play().catch(function(error) {
-            console.log("Playback prevented:", error);
-        });
-    }
-    var btn = document.getElementById('music-btn');
-    if (btn) {
-        btn.style.display = 'none';
-    }
-    // This line forces your slideshow function to trigger safely
-    if (typeof retryMusic === 'function') {
-        retryMusic();
-    }
-}
-</script>
+<div style="text-align: center; margin: 20px 0; position: relative; z-index: 9999;">
+    <audio id="bg-music" controls loop>
+        <source src="https://soundhelix.com" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
 
 
 
