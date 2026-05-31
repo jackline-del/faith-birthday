@@ -292,39 +292,31 @@ body::after {
 ║  3. Put it in the SAME FOLDER as this HTML file      ║
 ╚══════════════════════════════════════════════════════╝
 -->
-<div style="position:absolute; visibility:hidden; width:0; height:0;">
-    <div id="player"></div>
-</div>
-<script src="https://youtube.com"></script>
+<audio id="bg-music" loop>
+    <source src="https://mixkit.co" type="audio/wav">
+</audio>
 
-
-<!-- Shows only if browser blocks autoplay -->
-<button id="music-btn" onclick="togglePlayMusic()">🎵 Tap to play music</button>
+<button id="music-btn" onclick="playMusicAndStart()">🎵 Tap to play music</button>
 
 <script>
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: '5Tz66MJvuck',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'loop': 1,
-            'playlist': '5Tz66MJvuck'
-        }
-    });
-}
-
-function togglePlayMusic() {
-    if (player && typeof player.playVideo === 'function') {
-        player.playVideo();
-        var btn = document.getElementById('music-btn');
-        if (btn) btn.style.display = 'none';
+function playMusicAndStart() {
+    var audio = document.getElementById('bg-music');
+    if (audio) {
+        audio.play().catch(function(error) {
+            console.log("Playback prevented:", error);
+        });
+    }
+    var btn = document.getElementById('music-btn');
+    if (btn) {
+        btn.style.display = 'none';
+    }
+    // This line forces your slideshow function to trigger safely
+    if (typeof retryMusic === 'function') {
+        retryMusic();
     }
 }
 </script>
+
 
 
 <canvas id="particle-canvas"></canvas>
