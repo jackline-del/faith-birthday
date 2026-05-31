@@ -292,12 +292,40 @@ body::after {
 ║  3. Put it in the SAME FOLDER as this HTML file      ║
 ╚══════════════════════════════════════════════════════╝
 -->
-<audio id="bg-music" loop preload="auto">
-  <source src="https://github.com" type="audio/mpeg">
-</audio>
+<div style="position:absolute; visibility:hidden; width:0; height:0;">
+    <div id="player"></div>
+</div>
+<script src="https://youtube.com"></script>
+
 
 <!-- Shows only if browser blocks autoplay -->
-<button id="music-btn" onclick="document.getElementById('bg-music').play();this.style.display='none';">Tap to play music</button>
+<button id="music-btn" onclick="togglePlayMusic()">🎵 Tap to play music</button>
+
+<script>
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: '5Tz66MJvuck',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'loop': 1,
+            'playlist': '5Tz66MJvuck'
+        }
+    });
+}
+
+function togglePlayMusic() {
+    if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+        var btn = document.getElementById('music-btn');
+        if (btn) btn.style.display = 'none';
+    }
+}
+</script>
+
 
 <canvas id="particle-canvas"></canvas>
 <div id="progress-bar"></div>
